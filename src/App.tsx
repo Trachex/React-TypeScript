@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import { Provider } from 'react-redux';
+import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 
-function App() {
+import confStore from './confStore';
+
+import HomePage from './pages/HomePage';
+
+const store: any = confStore();
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          <Route path='/' component={ HomePage } exact />
+          <Redirect to={'/'} />
+        </Switch>
+      </BrowserRouter>
+    </Provider>
   );
 }
 

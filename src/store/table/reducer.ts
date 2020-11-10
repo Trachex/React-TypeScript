@@ -1,14 +1,14 @@
 import { Reducer } from 'redux';
 
-import { BookingState, AllActions } from './types';
+import { TableState, AllActions } from './types';
 
-export const initialState: BookingState = {
+export const initialState: TableState = {
     from: '',
     to: '',
     rooms: []
 };
 
-const reducer: Reducer<BookingState, AllActions> = (state: BookingState = initialState, action: AllActions): any => {
+const reducer: Reducer<TableState, AllActions> = (state: TableState = initialState, action: AllActions): any => {
     switch (action.type) {
         case 'GET_AVAILABLE':
             if ('rooms' in action.payload) return { ...state, rooms: action.payload.rooms };

@@ -4,10 +4,10 @@ import { ThunkAction } from 'redux-thunk';
 import {
     GetAvailableType,
     DateChangeType,
-    BookingState
+    TableState
 } from './types';
 
-export const GetAvailable: ActionCreator<ThunkAction<Promise<GetAvailableType>, BookingState, void, any>> = (from: String, to: String) => {
+export const GetAvailable: ActionCreator<ThunkAction<Promise<GetAvailableType>, TableState, void, any>> = (from: String, to: String) => {
   return async (dispatch: Dispatch): Promise<GetAvailableType> => {
 
     const rooms = await (await fetch(`/getAvailable?from=${from}&to=${to}`)).json();

@@ -1,20 +1,20 @@
 import React, { useRef } from 'react';
+import { connect } from 'react-redux';
+import { CreateRoom } from '../store/room/actions';
 
-const CreateRoomForm: React.FC<any> = () => {
+const CreateRoomForm: React.FC<any> = ({ create }) => {
     const input = useRef<HTMLFormElement>(null);
-
-    const create = async () => {
-        const name = input.current!['number'].value;
-        const res = await (await fetch('/room/create', { method: 'POST', body: JSON.stringify({ name }) })).json();
-        console.log(res);
-    }
 
     return (
         <form ref={input}>
             <input type="text" placeholder='Number' name='number'/>
-            <button type='button' onClick={create}>Create</button>
+            <button type='button' onClick={() => { create(input) }}>Create</button>
         </form>
     );
 }
 
-export default CreateRoomForm;
+const mapStateToProps = () => {
+    return {};
+};
+
+export default connect(mapStateToProps, { create: CreateRoom })(CreateRoomForm);

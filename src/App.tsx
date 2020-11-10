@@ -5,6 +5,7 @@ import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 import confStore from './confStore';
 
 import HomePage from './pages/HomePage';
+import RoomPage from './pages/RoomPage';
 
 const store: any = confStore();
 
@@ -14,6 +15,7 @@ const App: React.FC = () => {
       <BrowserRouter>
         <Switch>
           <Route path='/' component={ HomePage } exact />
+          <Route path='/rooms' component={ RoomPage } />
           <Redirect to={'/'} />
         </Switch>
       </BrowserRouter>

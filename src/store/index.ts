@@ -1,12 +1,12 @@
 import { combineReducers, Reducer } from 'redux';
 
-import { BookingState } from './booking/types';
-import BookingReducer from './booking/reducer';
+import { TableState } from './table/types';
+import TableReducer from './table/reducer';
 
 export interface ApplicationState {
-    booking: BookingState
+    table: TableState
 }
 
 export const reducers: Reducer<ApplicationState> = combineReducers<ApplicationState>({
-    booking: BookingReducer
+    table: TableReducer
 });

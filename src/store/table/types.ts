@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-export interface BookingState {
+export interface TableState {
   from: String,
   to: String,
   rooms: Array<any>

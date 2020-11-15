@@ -3,6 +3,7 @@ import { ThunkAction } from 'redux-thunk';
 
 import {
     CreateRoomType,
+    GetRoomsType,
     RoomState
 } from './types';
 
@@ -21,4 +22,18 @@ export const CreateRoom: ActionCreator<ThunkAction<Promise<CreateRoomType>, Room
         });
     }
 }
+
+export const GetRooms: ActionCreator<ThunkAction<Promise<GetRoomsType>, RoomState, void, any>> = () => {
+
+    return async (dispatch: Dispatch): Promise<GetRoomsType> => {
   
+        const { rooms } = await (await fetch('/room/getAll')).json();
+
+        return dispatch({
+            type: 'GET_ROOMS',
+            payload: {
+                rooms
+            }
+        });
+    }
+}

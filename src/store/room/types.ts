@@ -14,4 +14,14 @@ export interface CreateRoomType extends Action {
     }
 }
 
-export type AllActions = CreateRoomType;
+export interface GetRoomsType extends Action {
+    type: String,
+    payload: {
+        rooms: Array<{
+            id: Number,
+            number: Number
+        }>
+    }
+}
+
+export type AllActions = CreateRoomType | GetRoomsType;

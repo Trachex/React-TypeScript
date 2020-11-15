@@ -15,7 +15,9 @@ const reducer: Reducer<RoomState, AllActions> = (state: RoomState = initialState
                 return { ...state, rooms };
             }
             break;
-
+        case 'GET_ROOMS':
+            if ('rooms' in action.payload) return { ...state, rooms: action.payload.rooms };
+            break;
       default:
         return state;
     }

@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 
 import * as actions from '../store/room/actions';
 import RoomRow from './RoomRow';
+import CreateRoomForm from './CreateRoomForm';
 
-const RoomTable: React.FC<any> = ({ rooms, GetRooms }) => {
+const RoomTable: React.FC<any> = ({ rooms, GetRooms, CreateRoom }) => {
     useEffect(GetRooms, []);
     const rows = rooms.map((e: any) => <RoomRow key={e.id} number={e.number}/>);
 
     return (
         <div>
+            <CreateRoomForm create={ CreateRoom } />
             <ul>
                 { rows }
             </ul>

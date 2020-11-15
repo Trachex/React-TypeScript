@@ -1,6 +1,4 @@
 import React, { useRef } from 'react';
-import { connect } from 'react-redux';
-import { CreateRoom } from '../store/room/actions';
 
 const CreateRoomForm: React.FC<any> = ({ create }) => {
     const input = useRef<HTMLFormElement>(null);
@@ -13,8 +11,4 @@ const CreateRoomForm: React.FC<any> = ({ create }) => {
     );
 }
 
-const mapStateToProps = () => {
-    return {};
-};
-
-export default connect(mapStateToProps, { create: CreateRoom })(CreateRoomForm);
+export default CreateRoomForm;

@@ -4,6 +4,7 @@ import { ThunkAction } from 'redux-thunk';
 import {
     CreateRoomType,
     GetRoomsType,
+    DeleteRoomType,
     RoomState
 } from './types';
 
@@ -33,6 +34,21 @@ export const GetRooms: ActionCreator<ThunkAction<Promise<GetRoomsType>, RoomStat
             type: 'GET_ROOMS',
             payload: {
                 rooms
+            }
+        });
+    }
+}
+
+export const DeleteRoom: ActionCreator<ThunkAction<Promise<DeleteRoomType>, RoomState, void, any>> = (roomId: Number) => {
+
+    return async (dispatch: Dispatch): Promise<DeleteRoomType> => {
+  
+        const { id } = await (await fetch('/room/delete', { method: 'DELETE', body: JSON.stringify({ id: roomId })})).json();
+
+        return dispatch({
+            type: 'DELETE_ROOM',
+            payload: {
+                id
             }
         });
     }

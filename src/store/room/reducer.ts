@@ -15,9 +15,19 @@ const reducer: Reducer<RoomState, AllActions> = (state: RoomState = initialState
                 return { ...state, rooms };
             }
             break;
+
         case 'GET_ROOMS':
             if ('rooms' in action.payload) return { ...state, rooms: action.payload.rooms };
             break;
+
+        case 'DELETE_ROOM':
+            if ('id' in action.payload) {
+                const { id } = action.payload;
+                const rooms = state.rooms.filter(e => e.id !== id);
+                return { ...state, rooms };
+            }
+            break;
+
       default:
         return state;
     }

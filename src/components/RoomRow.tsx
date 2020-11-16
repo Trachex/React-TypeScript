@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-
-const RoomRow: React.FC<any> = ({ number }) => {
+const RoomRow: React.FC<any> = ({ number, deleteFn }) => {
+    // const [ isOpen, changeState ] = useState<Boolean>(false);
 
     return (
         <li>
-            { number }
+            <p>{ number }</p>
+            <button onClick={deleteFn}>Delete</button>
         </li>
     );
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import * as actions from '../store/room/actions';
+import * as actions from '../../store/room/actions';
 import RoomRow from './RoomRow';
 import CreateRoomForm from './CreateRoomForm';
 

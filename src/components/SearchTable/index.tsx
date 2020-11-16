@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
 import { connect } from 'react-redux';
-import * as actions from '../store/table/actions';
+import * as actions from '../../store/table/actions';
 
 const BookingTable: React.FC<any> = ({ from, to, rooms, DateChange, GetAvailable }) => {
 

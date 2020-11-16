@@ -5,9 +5,9 @@ import * as actions from '../store/room/actions';
 import RoomRow from './RoomRow';
 import CreateRoomForm from './CreateRoomForm';
 
-const RoomTable: React.FC<any> = ({ rooms, GetRooms, CreateRoom, DeleteRoom }) => {
-    useEffect(GetRooms, []);
-    const rows = rooms.map((e: any) => <RoomRow key={e.id} number={e.number} deleteFn={()=>{ DeleteRoom(e.id) }}/>);
+const RoomTable: React.FC<any> = ({ rooms, GetRooms, CreateRoom, DeleteRoom, UpdateRoom }) => {
+    useEffect(() => { GetRooms() }, [GetRooms]);
+    const rows = rooms.map((e: any) => <RoomRow key={e.id} id={e.id} number={e.number} deleteFn={DeleteRoom} updateFn={UpdateRoom}/>);
 
     return (
         <div>

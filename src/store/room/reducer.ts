@@ -28,6 +28,17 @@ const reducer: Reducer<RoomState, AllActions> = (state: RoomState = initialState
             }
             break;
 
+        case 'UPDATE_ROOM':
+            if ('room' in action.payload) {
+                const newArr = state.rooms.slice(0);
+                const { room } = action.payload;
+                const index = newArr.findIndex(e => { return e.id === room.id });
+                newArr[index] = room;
+
+                return { ...state, rooms: newArr };
+            }
+            break;
+
       default:
         return state;
     }

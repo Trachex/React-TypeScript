@@ -31,4 +31,14 @@ export interface DeleteRoomType extends Action {
     }
 }
 
-export type AllActions = CreateRoomType | GetRoomsType  | DeleteRoomType;
+export interface UpdateRoomType extends Action {
+    type: String,
+    payload: {
+        room: {
+            id: Number,
+            number: Number
+        }
+    }
+}
+
+export type AllActions = CreateRoomType | GetRoomsType  | DeleteRoomType | UpdateRoomType;

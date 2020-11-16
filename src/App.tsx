@@ -16,6 +16,7 @@ const App: React.FC = () => {
         <Switch>
           <Route path='/' component={ HomePage } exact />
           <Route path='/rooms' component={ RoomPage } />
+          {/* <Route path='/booking' component={  } /> */}
           <Redirect to={'/'} />
         </Switch>
       </BrowserRouter>

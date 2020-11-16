@@ -7,7 +7,7 @@ const NavTab: React.FC<any> = props => {
     <nav>
       <Link to={'/'} >Home</Link>
       <Link to={'/rooms'} >Rooms</Link>
-      {/* <Link to={''} >Bookings</Link> */}
+      <Link to={'/booking'} >Bookings</Link>
     </nav>
   );
 }

@@ -7,6 +7,7 @@ import confStore from './confStore';
 
 import HomePage from './pages/HomePage';
 import RoomPage from './pages/RoomPage';
+import BookingPage from './pages/BookingPage';
 
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
@@ -19,7 +20,7 @@ const App: React.FC = () => {
         <Switch>
           <Route path='/' component={ HomePage } exact />
           <Route path='/rooms' component={ RoomPage } />
-          {/* <Route path='/booking' component={  } /> */}
+          <Route path='/booking' component={ BookingPage } />
           <Redirect to={'/'} />
         </Switch>
       </BrowserRouter>

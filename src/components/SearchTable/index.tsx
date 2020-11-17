@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { connect } from 'react-redux';
 import * as actions from '../../store/table/actions';
 
-const BookingTable: React.FC<propTypes> = ({ from, to, rooms, DateChange, GetAvailable }) => {
+const SearchTable: React.FC<propTypes> = ({ from, to, rooms, DateChange, GetAvailable }) => {
 
 const Rooms = rooms.map((e:any) => { return <li key={e.id}>{e.number}</li> });
 
@@ -41,4 +41,4 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export default connect(mapStateToProps, actions)(BookingTable);
+export default connect(mapStateToProps, actions)(SearchTable);

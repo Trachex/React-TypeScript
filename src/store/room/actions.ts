@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { ActionCreator, Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
@@ -9,74 +10,78 @@ import {
     RoomState
 } from './types';
 
-export const CreateRoom: ActionCreator<ThunkAction<Promise<CreateRoomType>, RoomState, void, any>> = (number: Number) => {
+export const CreateRoom: ActionCreator<ThunkAction<Promise<CreateRoomType | void>, RoomState, void, any>> = (number: Number) => {
 
-    return async (dispatch: Dispatch): Promise<CreateRoomType> => {
+    return async (dispatch: Dispatch): Promise<CreateRoomType | void> => {
 
-        const { room } = await (await fetch('/room/create', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ number })
-        })).json();
+        try {
+            const { data } = await axios.post('/room/create', { number });
 
-        return dispatch({
-            type: 'CREATE_ROOM',
-            payload: {
-                room
-            }
-        });
+            return dispatch({
+                type: 'CREATE_ROOM',
+                payload: {
+                    room: data.room
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
     }
 }
 
-export const GetRooms: ActionCreator<ThunkAction<Promise<GetRoomsType>, RoomState, void, any>> = () => {
+export const GetRooms: ActionCreator<ThunkAction<Promise<GetRoomsType | void>, RoomState, void, any>> = () => {
 
-    return async (dispatch: Dispatch): Promise<GetRoomsType> => {
-  
-        const { rooms } = await (await fetch('/room/getAll')).json();
+    return async (dispatch: Dispatch): Promise<GetRoomsType | void> => {
 
-        return dispatch({
-            type: 'GET_ROOMS',
-            payload: {
-                rooms
-            }
-        });
+        try {
+            const { data } = await axios.get<any>('/room/getAll');
+
+            return dispatch({
+                type: 'GET_ROOMS',
+                payload: {
+                    rooms: data.rooms
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
     }
 }
 
-export const DeleteRoom: ActionCreator<ThunkAction<Promise<DeleteRoomType>, RoomState, void, any>> = (roomId: Number) => {
+export const DeleteRoom: ActionCreator<ThunkAction<Promise<DeleteRoomType | void>, RoomState, void, any>> = (roomId: Number) => {
 
-    return async (dispatch: Dispatch): Promise<DeleteRoomType> => {
-  
-        const { id } = await (await fetch('/room/delete', {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: roomId })
-        })).json();
+    return async (dispatch: Dispatch): Promise<DeleteRoomType | void> => {
 
-        return dispatch({
-            type: 'DELETE_ROOM',
-            payload: {
-                id
-            }
-        });
+        try {
+            const { data } = await axios.delete('/room/delete', { data: { id: roomId } });
+
+            return dispatch({
+                type: 'DELETE_ROOM',
+                payload: {
+                    id: data.id
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
     }
 }
 
-export const UpdateRoom: ActionCreator<ThunkAction<Promise<UpdateRoomType>, RoomState, void, any>> = (id: Number, number: Number) => {
+export const UpdateRoom: ActionCreator<ThunkAction<Promise<UpdateRoomType | void>, RoomState, void, any>> = (id: Number, number: Number) => {
 
-    return async (dispatch: Dispatch): Promise<UpdateRoomType> => {
-  
-        const { room } = await (await fetch('/room/update', {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id, number })
-        })).json();
+    return async (dispatch: Dispatch): Promise<UpdateRoomType | void> => {
 
-        return dispatch({
-            type: 'UPDATE_ROOM',
-            payload: {
-                room
-            }
-        });
+        try {
+            const { data } = await axios.put('/room/update', { id, number });
+
+            return dispatch({
+                type: 'UPDATE_ROOM',
+                payload: {
+                    room: data.room
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
     }
 }

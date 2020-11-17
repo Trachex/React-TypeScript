@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 import { Provider } from 'react-redux';
 import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 
@@ -6,6 +7,8 @@ import confStore from './confStore';
 
 import HomePage from './pages/HomePage';
 import RoomPage from './pages/RoomPage';
+
+axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 const store: any = confStore();
 

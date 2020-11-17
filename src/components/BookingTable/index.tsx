@@ -3,19 +3,35 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/booking/actions';
 
 import ReserveForm from './ReserveForm';
+import BookingRow from './BookingRow';
 
-const BookingTable: React.FC<any> = ({ rooms, Reserve }) => {
+const BookingTable: React.FC<propTypes> = ({ bookings, rooms, Reserve, DeleteBooking, UpdateBooking }) => {
+    const rows = bookings.map(((b: any) => {
+        return <BookingRow key={b.id} data={b} rooms={rooms} deleteFn={DeleteBooking} updateFn={UpdateBooking}/>
+    }));
+
     return (
         <div>
             <ReserveForm rooms={rooms} Reserve={Reserve}/>
-
+            <ul>
+                { rows }
+            </ul>
         </div>
     );
 }
 
+interface propTypes {
+    rooms: Array<{}>,
+    bookings: Array<{}>,
+    Reserve: Function,
+    DeleteBooking: Function,
+    UpdateBooking: Function
+}
+
 const mapStateToProps = (state: any) => {
     return {
-        rooms: state.table.rooms
+        rooms: state.table.rooms,
+        bookings: state.booking.bookings
     };
   };
 

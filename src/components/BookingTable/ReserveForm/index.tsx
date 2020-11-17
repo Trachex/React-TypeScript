@@ -3,7 +3,7 @@ import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
-const ReserveForm: React.FC<propTypes> = ({ Reserve, rooms = [] }) => {
+const ReserveForm: React.FC<propTypes> = ({ Reserve, rooms }) => {
     const input = useRef<HTMLFormElement>(null);
     const [ from, setFrom ] = useState<any>();
     const [ to, setTo ] = useState<any>();

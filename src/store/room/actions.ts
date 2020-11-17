@@ -9,8 +9,7 @@ import {
     RoomState
 } from './types';
 
-export const CreateRoom: ActionCreator<ThunkAction<Promise<CreateRoomType>, RoomState, void, any>> = (ref: any) => {
-    const number = ref.current!['number'].value;
+export const CreateRoom: ActionCreator<ThunkAction<Promise<CreateRoomType>, RoomState, void, any>> = (number: Number) => {
 
     return async (dispatch: Dispatch): Promise<CreateRoomType> => {
 
@@ -63,8 +62,7 @@ export const DeleteRoom: ActionCreator<ThunkAction<Promise<DeleteRoomType>, Room
     }
 }
 
-export const UpdateRoom: ActionCreator<ThunkAction<Promise<UpdateRoomType>, RoomState, void, any>> = (id: Number, ref: any) => {
-    const number = ref.current!['number'].value;
+export const UpdateRoom: ActionCreator<ThunkAction<Promise<UpdateRoomType>, RoomState, void, any>> = (id: Number, number: Number) => {
 
     return async (dispatch: Dispatch): Promise<UpdateRoomType> => {
   

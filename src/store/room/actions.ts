@@ -34,7 +34,7 @@ export const GetRooms: ActionCreator<ThunkAction<Promise<GetRoomsType | void>, R
     return async (dispatch: Dispatch): Promise<GetRoomsType | void> => {
 
         try {
-            const { data } = await axios.get<any>('/room/getAll');
+            const { data } = await axios.get('/room/getAll');
 
             return dispatch({
                 type: 'GET_ROOMS',

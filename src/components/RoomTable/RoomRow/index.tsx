@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-const RoomRow: React.FC<any> = ({ number, id, deleteFn, updateFn }) => {
+const RoomRow: React.FC<propTypes> = ({ number, id, deleteFn, updateFn }) => {
     const [ isOpen, changeState ] = useState<Boolean>(false);
     const input = useRef<HTMLFormElement>(null);
 
@@ -23,6 +23,13 @@ const RoomRow: React.FC<any> = ({ number, id, deleteFn, updateFn }) => {
             : null }
         </li>
     );
+}
+
+interface propTypes {
+    number: Number,
+    id: Number,
+    deleteFn: Function,
+    updateFn: Function
 }
 
 export default RoomRow;

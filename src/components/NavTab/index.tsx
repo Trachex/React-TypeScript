@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NavTab: React.FC<any> = props => {
+const NavTab: React.FC<any> = () => {
 
   return (
     <nav>

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-const CreateRoomForm: React.FC<any> = ({ create }) => {
+const CreateRoomForm: React.FC<propTypes> = ({ create }) => {
     const input = useRef<HTMLFormElement>(null);
 
     const send = (): void => {
@@ -14,6 +14,10 @@ const CreateRoomForm: React.FC<any> = ({ create }) => {
             <button type='button' onClick={send}>Create</button>
         </form>
     );
+}
+
+interface propTypes {
+    create: Function
 }
 
 export default CreateRoomForm;

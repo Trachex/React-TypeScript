@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/booking/actions';
 
 import ReserveForm from './ReserveForm';
 import BookingRow from './BookingRow';
 
-const BookingTable: React.FC<propTypes> = ({ bookings, rooms, Reserve, DeleteBooking, UpdateBooking }) => {
+const BookingTable: React.FC<propTypes> = ({ bookings, rooms, Reserve, DeleteBooking, UpdateBooking, GetBookings }) => {
+    useEffect(() => { GetBookings() }, [GetBookings]);
     const rows = bookings.map(((b: any) => {
         return <BookingRow key={b.id} data={b} rooms={rooms} deleteFn={DeleteBooking} updateFn={UpdateBooking}/>
     }));
@@ -25,7 +26,8 @@ interface propTypes {
     bookings: Array<{}>,
     Reserve: Function,
     DeleteBooking: Function,
-    UpdateBooking: Function
+    UpdateBooking: Function,
+    GetBookings: Function
 }
 
 const mapStateToProps = (state: any) => {

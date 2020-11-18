@@ -9,7 +9,8 @@ const BookingRow: React.FC<propTypes> = ({ data, rooms, deleteFn, updateFn }) =>
     const [ toInput, setTo ] = useState<any>();
     const input = useRef<HTMLFormElement>(null);
 
-    const { owner, id, from, to, room } = data;
+    const { owner, id, from, to, roomId } = data;
+    const room = rooms.find(e => e.id === roomId);
     const options = rooms.map((r: any) => <option value={r.id}>{r.number}</option>);
 
     const send = (): void => {
@@ -54,9 +55,9 @@ interface propTypes {
         id: Number,
         from: String,
         to: String,
-        room: { number: Number }
+        roomId: Number
     },
-    rooms: Array<{}>,
+    rooms: Array<any>,
     deleteFn: Function,
     updateFn: Function
 }

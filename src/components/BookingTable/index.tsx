@@ -22,8 +22,8 @@ const BookingTable: React.FC<propTypes> = ({ bookings, rooms, Reserve, DeleteBoo
 }
 
 interface propTypes {
-    rooms: Array<{}>,
-    bookings: Array<{}>,
+    rooms: Array<any>,
+    bookings: Array<any>,
     Reserve: Function,
     DeleteBooking: Function,
     UpdateBooking: Function,
@@ -32,7 +32,7 @@ interface propTypes {
 
 const mapStateToProps = (state: any) => {
     return {
-        rooms: state.table.rooms,
+        rooms: state.room.rooms,
         bookings: state.booking.bookings
     };
   };

@@ -1,26 +1,25 @@
 import { Action } from 'redux';
 
+interface RoomType {
+    id: Number,
+    number: Number
+}
+
 export interface RoomState {
-    rooms: Array<any>
+    rooms: Array<RoomType>
 }
 
 export interface CreateRoomType extends Action {
     type: String,
     payload: {
-        room: {
-            id: Number,
-            number: Number
-        }
+        room: RoomType
     }
 }
 
 export interface GetRoomsType extends Action {
     type: String,
     payload: {
-        rooms: Array<{
-            id: Number,
-            number: Number
-        }>
+        rooms: Array<RoomType>
     }
 }
 
@@ -34,10 +33,7 @@ export interface DeleteRoomType extends Action {
 export interface UpdateRoomType extends Action {
     type: String,
     payload: {
-        room: {
-            id: Number,
-            number: Number
-        }
+        room: RoomType
     }
 }
 

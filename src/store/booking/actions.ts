@@ -38,7 +38,7 @@ export const DeleteBooking: ActionCreator<ThunkAction<Promise<DeleteBookingType 
             const { data } = await axios.delete('/delete', { data: { id } });
 
             return dispatch({
-                type: '',
+                type: 'DELETE_BOOKING',
                 payload: {
                     id: data.id
                 }
@@ -77,7 +77,7 @@ export const GetBookings: ActionCreator<ThunkAction<Promise<GetBookingsType | vo
             const { data } = await axios.get('/getAll');
 
             return dispatch({
-                type: '',
+                type: 'GET_BOOKINGS',
                 payload: {
                     bookings: data.bookings
                 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import * as actions from '../../store/room/actions';
+import * as actions from '../../store/booking/actions';
 import RoomRow from './RoomRow';
 import CreateRoomForm from './CreateRoomForm';
 
@@ -29,7 +29,7 @@ interface propTypes {
 
 const mapStateToProps = (state: any) => {
     return {
-        rooms: state.room.rooms
+        rooms: state.booking.rooms
     };
 };
 

@@ -5,8 +5,8 @@ import * as actions from '../../store/booking/actions';
 import ReserveForm from './ReserveForm';
 import BookingRow from './BookingRow';
 
-const BookingTable: React.FC<propTypes> = ({ bookings, rooms, Reserve, DeleteBooking, UpdateBooking, GetBookings }) => {
-    useEffect(() => { GetBookings() }, [GetBookings]);
+const BookingTable: React.FC<propTypes> = ({ bookings, rooms, Reserve, DeleteBooking, UpdateBooking, GetBookings, GetRooms }) => {
+    useEffect(() => { GetRooms().then(GetBookings()); }, [GetBookings, GetRooms]);
     const rows = bookings.map(((b: any) => {
         return <BookingRow key={b.id} data={b} rooms={rooms} deleteFn={DeleteBooking} updateFn={UpdateBooking}/>
     }));
@@ -27,12 +27,13 @@ interface propTypes {
     Reserve: Function,
     DeleteBooking: Function,
     UpdateBooking: Function,
-    GetBookings: Function
+    GetBookings: Function,
+    GetRooms: Function
 }
 
 const mapStateToProps = (state: any) => {
     return {
-        rooms: state.room.rooms,
+        rooms: state.booking.rooms,
         bookings: state.booking.bookings
     };
   };

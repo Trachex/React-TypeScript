@@ -7,6 +7,10 @@ import {
     DeleteBookingType,
     UpdateBookingType,
     GetBookingsType,
+    CreateRoomType,
+    GetRoomsType,
+    UpdateRoomType,
+    DeleteRoomType,
     BookingState
 } from './types';
 
@@ -20,6 +24,45 @@ export const Reserve: ActionCreator<ThunkAction<Promise<ReserveType | void>, Boo
 
             return dispatch({
                 type: 'RESERVE',
+                payload: {
+                    booking: data.booking
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
+
+export const GetBookings: ActionCreator<ThunkAction<Promise<GetBookingsType | void>, BookingState, void, any>> = () => {
+
+    return async (dispatch: Dispatch): Promise<GetBookingsType | void> => {
+
+        try {
+            const { data } = await axios.get('/getAll');
+
+            return dispatch({
+                type: 'GET_BOOKINGS',
+                payload: {
+                    bookings: data.bookings
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
+
+export const UpdateBooking: ActionCreator<ThunkAction<Promise<UpdateBookingType | void>, BookingState, void, any>> = 
+    (owner: String, roomId: Number, from: String, to: String) => {
+
+    return async (dispatch: Dispatch): Promise<UpdateBookingType | void> => {
+
+        try {
+            const { data } = await axios.put('/update', { owner, roomId, from, to });
+
+            return dispatch({
+                type: '',
                 payload: {
                     booking: data.booking
                 }
@@ -49,18 +92,17 @@ export const DeleteBooking: ActionCreator<ThunkAction<Promise<DeleteBookingType 
     }
 }
 
-export const UpdateBooking: ActionCreator<ThunkAction<Promise<UpdateBookingType | void>, BookingState, void, any>> = 
-    (owner: String, roomId: Number, from: String, to: String) => {
+export const CreateRoom: ActionCreator<ThunkAction<Promise<CreateRoomType | void>, BookingState, void, any>> = (number: Number) => {
 
-    return async (dispatch: Dispatch): Promise<UpdateBookingType | void> => {
+    return async (dispatch: Dispatch): Promise<CreateRoomType | void> => {
 
         try {
-            const { data } = await axios.put('/update', { owner, roomId, from, to });
+            const { data } = await axios.post('/room/create', { number });
 
             return dispatch({
-                type: '',
+                type: 'CREATE_ROOM',
                 payload: {
-                    booking: data.booking
+                    room: data.room
                 }
             });
         } catch (error) {
@@ -69,17 +111,55 @@ export const UpdateBooking: ActionCreator<ThunkAction<Promise<UpdateBookingType 
     }
 }
 
-export const GetBookings: ActionCreator<ThunkAction<Promise<GetBookingsType | void>, BookingState, void, any>> = () => {
+export const GetRooms: ActionCreator<ThunkAction<Promise<GetRoomsType | void>, BookingState, void, any>> = () => {
 
-    return async (dispatch: Dispatch): Promise<GetBookingsType | void> => {
+    return async (dispatch: Dispatch): Promise<GetRoomsType | void> => {
 
         try {
-            const { data } = await axios.get('/getAll');
+            const { data } = await axios.get('/room/getAll');
 
             return dispatch({
-                type: 'GET_BOOKINGS',
+                type: 'GET_ROOMS',
                 payload: {
-                    bookings: data.bookings
+                    rooms: data.rooms
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
+
+export const UpdateRoom: ActionCreator<ThunkAction<Promise<UpdateRoomType | void>, BookingState, void, any>> = (id: Number, number: Number) => {
+
+    return async (dispatch: Dispatch): Promise<UpdateRoomType | void> => {
+
+        try {
+            const { data } = await axios.put('/room/update', { id, number });
+
+            return dispatch({
+                type: 'UPDATE_ROOM',
+                payload: {
+                    room: data.room
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
+
+export const DeleteRoom: ActionCreator<ThunkAction<Promise<DeleteRoomType | void>, BookingState, void, any>> = (roomId: Number) => {
+
+    return async (dispatch: Dispatch): Promise<DeleteRoomType | void> => {
+
+        try {
+            const { data } = await axios.delete('/room/delete', { data: { id: roomId } });
+
+            return dispatch({
+                type: 'DELETE_ROOM',
+                payload: {
+                    id: data.id
                 }
             });
         } catch (error) {

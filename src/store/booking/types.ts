@@ -1,5 +1,4 @@
 import { Action } from 'redux';
-import { UpdateRoomType } from '../room/types';
 
 interface BookingType {
     id: Number,
@@ -9,8 +8,14 @@ interface BookingType {
     roomId: Number
 }
 
+interface RoomType {
+    id: Number,
+    number: Number
+}
+
 export interface BookingState {
-    bookings: Array<BookingType>
+    bookings: Array<BookingType>,
+    rooms: Array<RoomType>
 }
 
 export interface ReserveType extends Action {
@@ -41,4 +46,32 @@ export interface UpdateBookingType {
     }
 }
 
-export type AllActions = ReserveType | DeleteBookingType | UpdateRoomType | GetBookingsType;
+export interface CreateRoomType extends Action {
+    type: String,
+    payload: {
+        room: RoomType
+    }
+}
+
+export interface GetRoomsType extends Action {
+    type: String,
+    payload: {
+        rooms: Array<RoomType>
+    }
+}
+
+export interface DeleteRoomType extends Action {
+    type: String,
+    payload: {
+        id: Number
+    }
+}
+
+export interface UpdateRoomType extends Action {
+    type: String,
+    payload: {
+        room: RoomType
+    }
+}
+
+export type AllActions = ReserveType | DeleteBookingType | GetBookingsType | CreateRoomType | GetRoomsType  | DeleteRoomType | UpdateRoomType;

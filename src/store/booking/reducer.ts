@@ -31,7 +31,7 @@ const reducer: Reducer<BookingState, AllActions> = (state: BookingState = initia
             }
             break;
 
-        case 'UPDATE_BOOKINGS':
+        case 'UPDATE_BOOKING':
             if ('booking' in action.payload) {
                 const newArr = state.bookings.slice(0);
                 const { booking } = action.payload;

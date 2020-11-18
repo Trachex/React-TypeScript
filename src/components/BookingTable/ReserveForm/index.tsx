@@ -7,7 +7,7 @@ const ReserveForm: React.FC<propTypes> = ({ Reserve, rooms }) => {
     const input = useRef<HTMLFormElement>(null);
     const [ from, setFrom ] = useState<any>();
     const [ to, setTo ] = useState<any>();
-    const options = rooms.map((r: any) => <option value={r.id}>{r.number}</option>);
+    const options = rooms.map((r: any) => <option key={r.id} value={r.id}>{r.number}</option>);
 
     const send = (): void => {
         const owner = input.current!['owner'].value;

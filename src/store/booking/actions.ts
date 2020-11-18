@@ -21,6 +21,7 @@ export const Reserve: ActionCreator<ThunkAction<Promise<ReserveType | void>, Boo
 
         try {
             const { data } = await axios.post('/reserve', { owner, roomId, from, to });
+            if (data.success === false) throw new Error(data.text);
 
             return dispatch({
                 type: 'RESERVE',
@@ -40,6 +41,7 @@ export const GetBookings: ActionCreator<ThunkAction<Promise<GetBookingsType | vo
 
         try {
             const { data } = await axios.get('/getAll');
+            if (data.success === false) throw new Error(data.text);
 
             return dispatch({
                 type: 'GET_BOOKINGS',
@@ -54,15 +56,16 @@ export const GetBookings: ActionCreator<ThunkAction<Promise<GetBookingsType | vo
 }
 
 export const UpdateBooking: ActionCreator<ThunkAction<Promise<UpdateBookingType | void>, BookingState, void, any>> = 
-    (owner: String, roomId: Number, from: String, to: String) => {
+    (id: Number, owner: String, roomId: Number, from: String, to: String) => {
 
     return async (dispatch: Dispatch): Promise<UpdateBookingType | void> => {
 
         try {
-            const { data } = await axios.put('/update', { owner, roomId, from, to });
+            const { data } = await axios.put('/update', { id, owner, roomId, from, to });
+            if (data.success === false) throw new Error(data.text);
 
             return dispatch({
-                type: '',
+                type: 'UPDATE_BOOKING',
                 payload: {
                     booking: data.booking
                 }
@@ -79,6 +82,7 @@ export const DeleteBooking: ActionCreator<ThunkAction<Promise<DeleteBookingType 
 
         try {
             const { data } = await axios.delete('/delete', { data: { id } });
+            if (data.success === false) throw new Error(data.text);
 
             return dispatch({
                 type: 'DELETE_BOOKING',
@@ -98,6 +102,7 @@ export const CreateRoom: ActionCreator<ThunkAction<Promise<CreateRoomType | void
 
         try {
             const { data } = await axios.post('/room/create', { number });
+            if (data.success === false) throw new Error(data.text);
 
             return dispatch({
                 type: 'CREATE_ROOM',
@@ -117,6 +122,7 @@ export const GetRooms: ActionCreator<ThunkAction<Promise<GetRoomsType | void>, B
 
         try {
             const { data } = await axios.get('/room/getAll');
+            if (data.success === false) throw new Error(data.text);
 
             return dispatch({
                 type: 'GET_ROOMS',
@@ -136,6 +142,7 @@ export const UpdateRoom: ActionCreator<ThunkAction<Promise<UpdateRoomType | void
 
         try {
             const { data } = await axios.put('/room/update', { id, number });
+            if (data.success === false) throw new Error(data.text);
 
             return dispatch({
                 type: 'UPDATE_ROOM',
@@ -155,6 +162,7 @@ export const DeleteRoom: ActionCreator<ThunkAction<Promise<DeleteRoomType | void
 
         try {
             const { data } = await axios.delete('/room/delete', { data: { id: roomId } });
+            if (data.success === false) throw new Error(data.text);
 
             return dispatch({
                 type: 'DELETE_ROOM',

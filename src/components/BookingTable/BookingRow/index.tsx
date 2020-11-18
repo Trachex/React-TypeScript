@@ -11,15 +11,17 @@ const BookingRow: React.FC<propTypes> = ({ data, rooms, deleteFn, updateFn }) =>
 
     const { owner, id, from, to, roomId } = data;
     const room = rooms.find(e => e.id === roomId);
-    const options = rooms.map((r: any) => <option value={r.id}>{r.number}</option>);
+    const options = rooms.map((r: any) => <option key={r.id} value={r.id}>{r.number}</option>);
 
     const send = (): void => {
         const owner = input.current!['owner'].value;
-        const roomId = input.current!['roomId'].value;
-        if (!owner && !roomId && !fromInput && !toInput) return;
+        const newRoomId = input.current!['newRoomId'].value;
 
-        updateFn(owner,
-            roomId,
+        if (!owner && !newRoomId && !fromInput && !toInput) return;
+
+        updateFn(id,
+            owner,
+            newRoomId,
             fromInput ? moment(fromInput).format("YYYY-MM-DD") : undefined,
             toInput ? moment(toInput).format("YYYY-MM-DD") : undefined
         );
@@ -39,7 +41,7 @@ const BookingRow: React.FC<propTypes> = ({ data, rooms, deleteFn, updateFn }) =>
                 <input type='text' name='owner' placeholder='New owner'/>
                 <DatePicker placeholderText='From' onChange={setFrom}/>
                 <DatePicker placeholderText='To' onChange={setTo}/>
-                <select name="roomId">
+                <select name="newRoomId">
                     { options }
                 </select>
                 <button type='button' onClick={() => { send(); changeState(false) }}>Update</button>

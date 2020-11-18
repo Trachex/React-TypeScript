@@ -7,7 +7,7 @@ import * as actions from '../../store/table/actions';
 
 const SearchTable: React.FC<propTypes> = ({ from, to, rooms, DateChange, GetAvailable }) => {
 
-const Rooms = rooms.map((e:any) => { return <li key={e.id}>{e.number}</li> });
+const Rooms = rooms.map(e => { return <li key={e.id}>{e.number}</li> });
 
   return (
     <div>
@@ -28,7 +28,10 @@ const Rooms = rooms.map((e:any) => { return <li key={e.id}>{e.number}</li> });
 interface propTypes {
   from: Date,
   to: Date,
-  rooms: Array<{}>,
+  rooms: Array<{
+    id: number,
+    number: Number
+  }>,
   DateChange: Function,
   GetAvailable: Function
 }

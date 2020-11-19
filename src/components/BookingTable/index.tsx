@@ -7,7 +7,7 @@ import BookingRow from './BookingRow';
 
 const BookingTable: React.FC<propTypes> = ({ bookings, rooms, Reserve, DeleteBooking, UpdateBooking, GetBookings, GetRooms }) => {
     useEffect(() => { GetRooms().then(GetBookings()); }, [GetBookings, GetRooms]);
-    const rows = bookings.map(((b: any) => {
+    const rows = bookings.map((b => {
         return <BookingRow key={b.id} data={b} rooms={rooms} deleteFn={DeleteBooking} updateFn={UpdateBooking}/>
     }));
 

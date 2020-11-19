@@ -2,12 +2,13 @@ import React, { useRef, useState } from 'react';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import { Input, Select, MenuItem, Button } from '@material-ui/core';
 
 const ReserveForm: React.FC<propTypes> = ({ Reserve, rooms }) => {
     const input = useRef<HTMLFormElement>(null);
     const [ from, setFrom ] = useState<any>();
     const [ to, setTo ] = useState<any>();
-    const options = rooms.map((r: any) => <option key={r.id} value={r.id}>{r.number}</option>);
+    const options = rooms.map(r => <MenuItem key={r.id} value={r.id}>{r.number}</MenuItem>);
 
     const send = (): void => {
         const owner = input.current!['owner'].value;
@@ -18,20 +19,23 @@ const ReserveForm: React.FC<propTypes> = ({ Reserve, rooms }) => {
 
     return (
         <form ref={input}>
-            <input type="text" placeholder='Owner' name='owner'/>
+            <Input type="text" placeholder='Owner' name='owner'/>
             <DatePicker placeholderText='From' onChange={setFrom}/>
             <DatePicker placeholderText='To' onChange={setTo}/>
-            <select name='roomId'>
+            <Select name='roomId'>
                 { options }
-            </select>
-            <button type='button' onClick={send}>Create</button>
+            </Select>
+            <Button type='button' onClick={send}>Create</Button>
         </form>
     );
 }
 
 interface propTypes {
     Reserve: Function,
-    rooms: Array<{}>
+    rooms: Array<{
+        id: number,
+        number: Number
+    }>
 }
 
 export default ReserveForm;

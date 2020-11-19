@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Tabs, Tab } from '@material-ui/core';
 
 const NavTab: React.FC<any> = () => {
 
   return (
-    <nav>
-      <Link to={'/'} >Home</Link>
-      <Link to={'/rooms'} >Rooms</Link>
-      <Link to={'/booking'} >Bookings</Link>
-    </nav>
+    <Tabs>
+      <Tab label='Home'  to='/' component={Link} />
+      <Tab label='Rooms'  to='/rooms' component={Link} />
+      <Tab label='Booking'  to='/booking' component={Link} />
+    </Tabs>
   );
 }
 

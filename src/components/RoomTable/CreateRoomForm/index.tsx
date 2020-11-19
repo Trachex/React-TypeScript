@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Button, Input } from '@material-ui/core';
 
 const CreateRoomForm: React.FC<propTypes> = ({ create }) => {
     const input = useRef<HTMLFormElement>(null);
@@ -10,8 +11,8 @@ const CreateRoomForm: React.FC<propTypes> = ({ create }) => {
 
     return (
         <form ref={input}>
-            <input type="text" placeholder='Number' name='number'/>
-            <button type='button' onClick={send}>Create</button>
+            <Input type="text" placeholder='Number' name='number'/>
+            <Button type='button' onClick={send}>Create</Button>
         </form>
     );
 }

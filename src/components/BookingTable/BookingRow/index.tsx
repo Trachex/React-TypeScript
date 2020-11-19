@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import { Button, Input, Select, MenuItem } from '@material-ui/core';
 
 const BookingRow: React.FC<propTypes> = ({ data, rooms, deleteFn, updateFn }) => {
     const [ isOpen, changeState ] = useState<Boolean>(false);
@@ -11,7 +12,7 @@ const BookingRow: React.FC<propTypes> = ({ data, rooms, deleteFn, updateFn }) =>
 
     const { owner, id, from, to, roomId } = data;
     const room = rooms.find(e => e.id === roomId);
-    const options = rooms.map((r: any) => <option key={r.id} value={r.id}>{r.number}</option>);
+    const options = rooms.map((r: any) => <MenuItem key={r.id} value={r.id}>{r.number}</MenuItem>);
 
     const send = (): void => {
         const owner = input.current!['owner'].value;
@@ -33,18 +34,18 @@ const BookingRow: React.FC<propTypes> = ({ data, rooms, deleteFn, updateFn }) =>
             <p>{ room.number }</p>
             <p>{ from }</p>
             <p>{ to }</p>
-            <button onClick={() => { deleteFn(id) }}>Delete</button>
-            <button onClick={() => { changeState(!isOpen) }}>{ isOpen ? 'Cancel' : 'Update' }</button>
+            <Button onClick={() => { deleteFn(id) }}>Delete</Button>
+            <Button onClick={() => { changeState(!isOpen) }}>{ isOpen ? 'Cancel' : 'Update' }</Button>
 
             { isOpen ? 
             <form ref={input}>
-                <input type='text' name='owner' placeholder='New owner'/>
+                <Input type='text' name='owner' placeholder='New owner'/>
                 <DatePicker placeholderText='From' onChange={setFrom}/>
                 <DatePicker placeholderText='To' onChange={setTo}/>
-                <select name="newRoomId">
+                <Select name="newRoomId">
                     { options }
-                </select>
-                <button type='button' onClick={() => { send(); changeState(false) }}>Update</button>
+                </Select>
+                <Button type='button' onClick={() => { send(); changeState(false) }}>Update</Button>
             </form>
             : null }
         </li>

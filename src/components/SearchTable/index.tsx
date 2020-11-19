@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
 import { connect } from 'react-redux';
+import { Button } from '@material-ui/core';
 import * as actions from '../../store/table/actions';
 
 const SearchTable: React.FC<propTypes> = ({ from, to, rooms, DateChange, GetAvailable }) => {
@@ -12,9 +13,9 @@ const Rooms = rooms.map(e => { return <li key={e.id}>{e.number}</li> });
   return (
     <div>
       <div>
-        <DatePicker selected={from} onChange={(date: Date) => { DateChange(date, 'from') }}/>
-        <DatePicker selected={to} onChange={(date: Date) => { DateChange(date, 'to') }}/>
-        <button type='button' onClick={() => { GetAvailable(moment(from).format("YYYY-MM-DD"), moment(to).format("YYYY-MM-DD")) }}>Search</button> 
+        <DatePicker placeholderText='From' selected={from} onChange={(date: Date) => { DateChange(date, 'from') }}/>
+        <DatePicker placeholderText='To' selected={to} onChange={(date: Date) => { DateChange(date, 'to') }}/>
+        <Button type='button' onClick={() => { GetAvailable(moment(from).format("YYYY-MM-DD"), moment(to).format("YYYY-MM-DD")) }}>Search</Button> 
       </div>
 
       <ul>

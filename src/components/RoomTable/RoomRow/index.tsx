@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Button, Input } from '@material-ui/core';
 
 const RoomRow: React.FC<propTypes> = ({ number, id, deleteFn, updateFn }) => {
     const [ isOpen, changeState ] = useState<Boolean>(false);
@@ -12,13 +13,13 @@ const RoomRow: React.FC<propTypes> = ({ number, id, deleteFn, updateFn }) => {
     return (
         <li>
             <p>{ number }</p>
-            <button onClick={() => { deleteFn(id) }}>Delete</button>
-            <button onClick={() => { changeState(!isOpen) }}>{ isOpen ? 'Cancel' : 'Update' }</button>
+            <Button onClick={() => { deleteFn(id) }}>Delete</Button>
+            <Button onClick={() => { changeState(!isOpen) }}>{ isOpen ? 'Cancel' : 'Update' }</Button>
 
             { isOpen ? 
             <form ref={input}>
-                <input name='number'/>
-                <button type='button' onClick={() => { send(); changeState(false) }}>Update</button>
+                <Input placeholder='New Room Number' name='number'/>
+                <Button type='button' onClick={() => { send(); changeState(false) }}>Update</Button>
             </form>
             : null }
         </li>

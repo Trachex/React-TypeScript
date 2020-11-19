@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react';
 import moment from 'moment';
-import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { Input, Select, MenuItem, Button } from '@material-ui/core';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 const ReserveForm: React.FC<propTypes> = ({ Reserve, rooms }) => {
     const input = useRef<HTMLFormElement>(null);
-    const [ from, setFrom ] = useState<any>();
-    const [ to, setTo ] = useState<any>();
+    const [ from, setFrom ] = useState<Date | null>(new Date());
+    const [ to, setTo ] = useState<Date | null>(new Date());
     const options = rooms.map(r => <MenuItem key={r.id} value={r.id}>{r.number}</MenuItem>);
 
     const send = (): void => {
@@ -20,8 +21,10 @@ const ReserveForm: React.FC<propTypes> = ({ Reserve, rooms }) => {
     return (
         <form ref={input}>
             <Input type="text" placeholder='Owner' name='owner'/>
-            <DatePicker placeholderText='From' onChange={setFrom}/>
-            <DatePicker placeholderText='To' onChange={setTo}/>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDatePicker value={from} onChange={setFrom} placeholder='From' format="MM/dd/yyyy" variant="inline"/>
+                <KeyboardDatePicker value={to} onChange={setTo} placeholder='To' format="MM/dd/yyyy" variant="inline"/>
+            </MuiPickersUtilsProvider>
             <Select name='roomId'>
                 { options }
             </Select>

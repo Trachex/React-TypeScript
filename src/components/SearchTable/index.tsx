@@ -1,10 +1,11 @@
 import React from 'react';
-import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import "react-datepicker/dist/react-datepicker.css";
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import * as actions from '../../store/table/actions';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+
 
 const SearchTable: React.FC<propTypes> = ({ from, to, rooms, DateChange, GetAvailable }) => {
 
@@ -13,8 +14,10 @@ const Rooms = rooms.map(e => { return <li key={e.id}>{e.number}</li> });
   return (
     <div>
       <div>
-        <DatePicker placeholderText='From' selected={from} onChange={(date: Date) => { DateChange(date, 'from') }}/>
-        <DatePicker placeholderText='To' selected={to} onChange={(date: Date) => { DateChange(date, 'to') }}/>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <KeyboardDatePicker value={new Date()} onChange={(date: any) => { DateChange(date, 'from') }} placeholder='From' format="MM/dd/yyyy" variant="inline"/>
+          <KeyboardDatePicker value={new Date()} onChange={(date: any) => { DateChange(date, 'to') }} placeholder='To' format="MM/dd/yyyy" variant="inline"/>
+        </MuiPickersUtilsProvider>
         <Button type='button' onClick={() => { GetAvailable(moment(from).format("YYYY-MM-DD"), moment(to).format("YYYY-MM-DD")) }}>Search</Button> 
       </div>
 

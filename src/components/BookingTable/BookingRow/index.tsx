@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
 import moment from 'moment';
-import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { Button, Input, Select, MenuItem } from '@material-ui/core';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 const BookingRow: React.FC<propTypes> = ({ data, rooms, deleteFn, updateFn }) => {
     const [ isOpen, changeState ] = useState<Boolean>(false);
@@ -40,8 +41,10 @@ const BookingRow: React.FC<propTypes> = ({ data, rooms, deleteFn, updateFn }) =>
             { isOpen ? 
             <form ref={input}>
                 <Input type='text' name='owner' placeholder='New owner'/>
-                <DatePicker placeholderText='From' onChange={setFrom}/>
-                <DatePicker placeholderText='To' onChange={setTo}/>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker value={from} onChange={setFrom} placeholder='From' format="MM/dd/yyyy" variant="inline"/>
+                    <KeyboardDatePicker value={to} onChange={setTo} placeholder='To' format="MM/dd/yyyy" variant="inline"/>
+                </MuiPickersUtilsProvider>
                 <Select name="newRoomId">
                     { options }
                 </Select>

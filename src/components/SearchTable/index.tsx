@@ -5,6 +5,7 @@ import { Button } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { StyledOpt } from './styles';
+import StyledUl from '../StyledComp/StyledUl';
 import * as actions from '../../store/table/actions';
 
 
@@ -22,9 +23,9 @@ const Rooms = rooms.map(e => { return <li key={e.id}>{e.number}</li> });
         <Button type='button' onClick={() => { GetAvailable(moment(from).format("YYYY-MM-DD"), moment(to).format("YYYY-MM-DD")) }}>Search</Button> 
       </StyledOpt>
 
-      <ul>
+      <StyledUl>
         { Rooms }
-      </ul>
+      </StyledUl>
 
     </div>
   );

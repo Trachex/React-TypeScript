@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Button, Input } from '@material-ui/core';
-import { StyledLi } from './styles';
+import StyledLi from '../../StyledComp/StyledLi';
 
 const RoomRow: React.FC<propTypes> = ({ number, id, deleteFn, updateFn }) => {
     const [ isOpen, changeState ] = useState<Boolean>(false);

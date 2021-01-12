@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/booking/actions';
 import RoomRow from './RoomRow';
 import CreateRoomForm from './CreateRoomForm';
-import { StyledUl } from './styles';
+import StyledUl from '../StyledComp/StyledUl';
 
 const RoomTable: React.FC<propTypes> = ({ rooms = [], GetRooms, CreateRoom, DeleteRoom, UpdateRoom }) => {
     useEffect(() => { GetRooms() }, [GetRooms]);

@@ -2,24 +2,25 @@ import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
-import * as actions from '../../store/table/actions';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import { StyledOpt } from './styles';
+import * as actions from '../../store/table/actions';
 
 
-const SearchTable: React.FC<propTypes> = ({ from, to, rooms, DateChange, GetAvailable }) => {
+const SearchTable: React.FC<propTypes> = ({ from, to, rooms = [], DateChange, GetAvailable }) => {
 
 const Rooms = rooms.map(e => { return <li key={e.id}>{e.number}</li> });
 
   return (
     <div>
-      <div>
+      <StyledOpt>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker value={new Date()} onChange={(date: any) => { DateChange(date, 'from') }} placeholder='From' format="MM/dd/yyyy" variant="inline"/>
           <KeyboardDatePicker value={new Date()} onChange={(date: any) => { DateChange(date, 'to') }} placeholder='To' format="MM/dd/yyyy" variant="inline"/>
         </MuiPickersUtilsProvider>
         <Button type='button' onClick={() => { GetAvailable(moment(from).format("YYYY-MM-DD"), moment(to).format("YYYY-MM-DD")) }}>Search</Button> 
-      </div>
+      </StyledOpt>
 
       <ul>
         { Rooms }

@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-export const StyledLi = styled.li`
+const StyledLi = styled.li`
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    border-bottom: 1px solid black;
 
     & div, form {
         display: inherit;
@@ -12,3 +13,5 @@ export const StyledLi = styled.li`
         margin: 5px 0;
     }
 `;
+
+export default StyledLi;

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/booking/actions';
-
+import StyledUl from '../StyledComp/StyledUl';
 import ReserveForm from './ReserveForm';
 import BookingRow from './BookingRow';
 
@@ -14,9 +14,9 @@ const BookingTable: React.FC<propTypes> = ({ bookings, rooms, Reserve, DeleteBoo
     return (
         <div>
             <ReserveForm rooms={rooms} Reserve={Reserve}/>
-            <ul>
+            <StyledUl>
                 { rows }
-            </ul>
+            </StyledUl>
         </div>
     );
 }

@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Button, Input, Select, MenuItem } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import StyledLi from '../../StyledComp/StyledLi';
 
 const BookingRow: React.FC<propTypes> = ({ data, rooms, deleteFn, updateFn }) => {
     const [ isOpen, changeState ] = useState<Boolean>(false);
@@ -30,13 +31,15 @@ const BookingRow: React.FC<propTypes> = ({ data, rooms, deleteFn, updateFn }) =>
     }
 
     return (
-        <li>
+        <StyledLi>
             <p>{ owner }</p>
             <p>{ room.number }</p>
             <p>{ from }</p>
             <p>{ to }</p>
-            <Button onClick={() => { deleteFn(id) }}>Delete</Button>
-            <Button onClick={() => { changeState(!isOpen) }}>{ isOpen ? 'Cancel' : 'Update' }</Button>
+            <div>
+                <Button onClick={() => { deleteFn(id) }}>Delete</Button>
+                <Button onClick={() => { changeState(!isOpen) }}>{ isOpen ? 'Cancel' : 'Update' }</Button>
+            </div>
 
             { isOpen ? 
             <form ref={input}>
@@ -51,7 +54,7 @@ const BookingRow: React.FC<propTypes> = ({ data, rooms, deleteFn, updateFn }) =>
                 <Button type='button' onClick={() => { send(); changeState(false) }}>Update</Button>
             </form>
             : null }
-        </li>
+        </StyledLi>
     );
 }
 

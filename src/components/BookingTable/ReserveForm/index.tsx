@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Input, Select, MenuItem, Button } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import { StyledForm } from './styles';
 
 const ReserveForm: React.FC<propTypes> = ({ Reserve, rooms }) => {
     const input = useRef<HTMLFormElement>(null);
@@ -19,7 +20,7 @@ const ReserveForm: React.FC<propTypes> = ({ Reserve, rooms }) => {
     }
 
     return (
-        <form ref={input}>
+        <StyledForm ref={input}>
             <Input type="text" placeholder='Owner' name='owner'/>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDatePicker value={from} onChange={setFrom} placeholder='From' format="MM/dd/yyyy" variant="inline"/>
@@ -29,7 +30,7 @@ const ReserveForm: React.FC<propTypes> = ({ Reserve, rooms }) => {
                 { options }
             </Select>
             <Button type='button' onClick={send}>Create</Button>
-        </form>
+        </StyledForm>
     );
 }
 

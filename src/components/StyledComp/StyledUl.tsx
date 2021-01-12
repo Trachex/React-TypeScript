@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledUl = styled.ul`
+const StyledUl = styled.ul`
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -8,3 +8,5 @@ export const StyledUl = styled.ul`
     width: 60vw;
     margin: 10px auto;
 `;
+
+export default StyledUl;

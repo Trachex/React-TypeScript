@@ -5,7 +5,7 @@ const StyledLi = styled.li`
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid ${props => props.theme.borders};
 
     & div, form {
         display: inherit;

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { Button, Input } from '@material-ui/core';
+import StyledMButton from '../../StyledComp/MaterialButton';
+import StyledMInput from '../../StyledComp/MaterialInput';
 import StyledLi from '../../StyledComp/StyledLi';
 
 const RoomRow: React.FC<propTypes> = ({ number, id, deleteFn, updateFn }) => {
@@ -15,14 +16,14 @@ const RoomRow: React.FC<propTypes> = ({ number, id, deleteFn, updateFn }) => {
         <StyledLi>
             <p>{ number }</p>
             <div>
-                <Button onClick={() => { deleteFn(id) }}>Delete</Button>
-                <Button onClick={() => { changeState(!isOpen) }}>{ isOpen ? 'Cancel' : 'Update' }</Button>
+                <StyledMButton onClick={() => { deleteFn(id) }}>Delete</StyledMButton>
+                <StyledMButton onClick={() => { changeState(!isOpen) }}>{ isOpen ? 'Cancel' : 'Update' }</StyledMButton>
             </div>
 
             { isOpen ? 
             <form ref={input}>
-                <Input placeholder='New Room Number' name='number'/>
-                <Button type='button' onClick={() => { send(); changeState(false) }}>Update</Button>
+                <StyledMInput placeholder='New Room Number' name='number'/>
+                <StyledMButton type='button' onClick={() => { send(); changeState(false) }}>Update</StyledMButton>
             </form>
             : null }
         </StyledLi>

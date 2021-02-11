@@ -10,4 +10,8 @@ export const StyledTabs = styled(Tabs)`
         width: 80vw;
         margin: 0 auto;
     }
+
+    & > div > span {
+        background-color: ${props => props.theme.borders};
+    }
 `;

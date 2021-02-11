@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
+import StyledMButton from '../StyledComp/MaterialButton';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { StyledOpt } from './styles';
@@ -20,7 +20,7 @@ const Rooms = rooms.map(e => { return <li key={e.id}>{e.number}</li> });
           <KeyboardDatePicker value={new Date()} onChange={(date: any) => { DateChange(date, 'from') }} placeholder='From' format="MM/dd/yyyy" variant="inline"/>
           <KeyboardDatePicker value={new Date()} onChange={(date: any) => { DateChange(date, 'to') }} placeholder='To' format="MM/dd/yyyy" variant="inline"/>
         </MuiPickersUtilsProvider>
-        <Button type='button' onClick={() => { GetAvailable(moment(from).format("YYYY-MM-DD"), moment(to).format("YYYY-MM-DD")) }}>Search</Button> 
+        <StyledMButton type='button' onClick={() => { GetAvailable(moment(from).format("YYYY-MM-DD"), moment(to).format("YYYY-MM-DD")) }}>Search</StyledMButton> 
       </StyledOpt>
 
       <StyledUl>

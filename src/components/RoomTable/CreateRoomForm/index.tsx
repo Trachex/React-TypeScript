@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
-import { Button, Input } from '@material-ui/core';
 import { StyledForm } from './styles';
+import StyledMButton from '../../StyledComp/MaterialButton';
+import StyledMInput from '../../StyledComp/MaterialInput';
 
 const CreateRoomForm: React.FC<propTypes> = ({ create }) => {
     const input = useRef<HTMLFormElement>(null);
@@ -12,8 +13,8 @@ const CreateRoomForm: React.FC<propTypes> = ({ create }) => {
 
     return (
         <StyledForm ref={input}>
-            <Input type="text" placeholder='Number' name='number'/>
-            <Button type='button' onClick={send}>Create</Button>
+            <StyledMInput type="text" placeholder='Number' name='number'/>
+            <StyledMButton type='button' onClick={send}>Create</StyledMButton>
         </StyledForm>
     );
 }

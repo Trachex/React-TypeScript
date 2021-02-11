@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
 import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
-import { Button, Input, Select, MenuItem } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import StyledLi from '../../StyledComp/StyledLi';
+import { StyledMSelect, StyledMMenuItem } from '../../StyledComp/MaterialSelect';
+import StyledMButton from '../../StyledComp/MaterialButton';
+import StyledMInput from '../../StyledComp/MaterialInput';
 
 const BookingRow: React.FC<propTypes> = ({ data, rooms, deleteFn, updateFn }) => {
     const [ isOpen, changeState ] = useState<Boolean>(false);
@@ -14,7 +16,7 @@ const BookingRow: React.FC<propTypes> = ({ data, rooms, deleteFn, updateFn }) =>
 
     const { owner, id, from, to, roomId } = data;
     const room = rooms.find(e => e.id === roomId);
-    const options = rooms.map((r: any) => <MenuItem key={r.id} value={r.id}>{r.number}</MenuItem>);
+    const options = rooms.map((r: any) => <StyledMMenuItem key={r.id} value={r.id}>{r.number}</StyledMMenuItem>);
 
     const send = (): void => {
         const owner = input.current!['owner'].value;
@@ -37,21 +39,21 @@ const BookingRow: React.FC<propTypes> = ({ data, rooms, deleteFn, updateFn }) =>
             <p>{ from }</p>
             <p>{ to }</p>
             <div>
-                <Button onClick={() => { deleteFn(id) }}>Delete</Button>
-                <Button onClick={() => { changeState(!isOpen) }}>{ isOpen ? 'Cancel' : 'Update' }</Button>
+                <StyledMButton onClick={() => { deleteFn(id) }}>Delete</StyledMButton>
+                <StyledMButton onClick={() => { changeState(!isOpen) }}>{ isOpen ? 'Cancel' : 'Update' }</StyledMButton>
             </div>
 
             { isOpen ? 
             <form ref={input}>
-                <Input type='text' name='owner' placeholder='New owner'/>
+                <StyledMInput type='text' name='owner' placeholder='New owner'/>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker value={from} onChange={setFrom} placeholder='From' format="MM/dd/yyyy" variant="inline"/>
                     <KeyboardDatePicker value={to} onChange={setTo} placeholder='To' format="MM/dd/yyyy" variant="inline"/>
                 </MuiPickersUtilsProvider>
-                <Select name="newRoomId">
+                <StyledMSelect name="newRoomId">
                     { options }
-                </Select>
-                <Button type='button' onClick={() => { send(); changeState(false) }}>Update</Button>
+                </StyledMSelect>
+                <StyledMButton type='button' onClick={() => { send(); changeState(false) }}>Update</StyledMButton>
             </form>
             : null }
         </StyledLi>

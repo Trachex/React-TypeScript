@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Tabs } from '@material-ui/core';
 
 export const StyledTabs = styled(Tabs)`
-    margin: 10px 0;
+    margin: 0;
 
     & > div > div {
         display: flex;
